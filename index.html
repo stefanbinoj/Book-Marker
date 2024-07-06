@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+
+<body>
+    <div class="bg">
+        <h2 class="pt-3 ml-3">Hello</h2>
+        <h1 class="ml-3 mb-5">John Doe</h1>
+        <div class="card">
+            <h3>Bookmark Your Favorite Sites</h3>
+            <form id="bookmarkForm" class="inner-card">
+                <label for="siteNameInput">SITE NAME</label><br />
+                <input id="siteNameInput" type="text" placeholder="  Enter site name">
+                <p id="siteNameErrMsg"></p>
+                <br />
+                <label for="siteUrlInput">SITE NAME</label><br />
+                <input id="siteUrlInput" type="text" placeholder="  Enter site name">
+                <p id="siteUrlErrMsg"></p>
+                <div class="d-flex justify-content-end">
+                    <button id="submitBtn" class="btn pl-3 pr-3 text-white">Add</button>
+                </div>
+            </form>
+            <div>
+                <ul id="bookmarksList">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
