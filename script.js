@@ -1,3 +1,4 @@
+
 let formEl = document.getElementById("bookmarkForm");
 let nameEl = document.getElementById("siteNameInput");
 let urlEl = document.getElementById("siteUrlInput");
@@ -6,6 +7,21 @@ let errorMsg = "Required *";
 let nameErrorEl = document.getElementById("siteNameErrMsg");
 let urlErrorEl = document.getElementById("siteUrlErrMsg");
 let ulEl = document.getElementById("bookmarksList");
+
+function loadArray() {
+    let stringifiedArr = localStorage.getItem("bookMarkManager");
+    let parsedArr=JSON.parse(stringifiedArr);
+    console.log("the array is : ",parsedArr);
+    if (parsedArr === null) {
+        return [];
+    } else {
+        return parsedArr;
+    }
+
+}
+let bookMark = loadArray();
+let bookMarkCount=bookMark.length;
+console.log(bookMarkCount);
 
 function nameChecker() {
     if (nameEl.value === "") {
@@ -20,26 +36,58 @@ function urlChecker() {
         urlErrorEl.classList.add("error-msg");
     }
 }
-nameEl.addEventListener("change", nameChecker);
+nameEl.addEventListener("blur", nameChecker);
 
-urlEl.addEventListener("change", urlChecker);
+urlEl.addEventListener("blur", urlChecker);
 
-let bookMark = [];
+function onDeleteTodo(labelId){
+    let labelElement = document.getElementById(labelId);
+    ulEl.removeChild(labelElement);
+    
+    let deleteElementIndex = bookMark.findIndex(function(eachMark) {
+    let eachMarkId ="label"+ eachMark.ID;
+    if (eachMarkId === labelId) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  bookMark.splice(deleteElementIndex, 1);
+  localStorage.setItem("bookMarkManager", JSON.stringify(bookMark));
+}
 
 function addToArrayAndDisplay(element) {
-    let name = element.NAME;
-    let url = element.URL;
+    
 
     let liEl = document.createElement("li");
+    let smallContainerEl=document.createElement("div");
+    smallContainerEl.classList.add("d-flex", "flex-row");
     let paraEl = document.createElement("p");
     let aEl = document.createElement("a");
-    paraEl.textContent = name;
-    aEl.textContent = url;
-    aEl.href = url;
+    let labelId = "label" + element.ID;
+    liEl.id=labelId;
+    paraEl.textContent = element.NAME;
+    aEl.textContent = element.URL;
+    aEl.href = element.URL;
     aEl.target = "_blank";
     liEl.classList.add("outer-card");
     paraEl.classList.add("paraEl");
-    liEl.appendChild(paraEl);
+    smallContainerEl.appendChild(paraEl);
+    let deleteIconContainer = document.createElement("div");
+    deleteIconContainer.classList.add("delete-icon-container");
+    smallContainerEl.appendChild(deleteIconContainer);
+
+    let deleteIcon = document.createElement("i");
+    deleteIcon.classList.add("far", "fa-trash-alt", "delete-icon");
+
+    deleteIcon.onclick = function () {
+    onDeleteTodo(labelId);
+    };
+
+    deleteIconContainer.appendChild(deleteIcon);
+    
+    liEl.appendChild(smallContainerEl);
     liEl.appendChild(aEl);
     ulEl.appendChild(liEl);
 
@@ -47,50 +95,38 @@ function addToArrayAndDisplay(element) {
 
 }
 
-function loadArray() {
-    let arr = localStorage.getItem("bookMarkManager");
-    if (arr === null) {
-        return;
-    } else {
-        bookMark = arr;
-        console.log(bookMark);
-        for (let each of bookMark) {
-            addToArrayAndDisplay(each);
-        }
-    }
-
+for (let mark of bookMark) {
+  addToArrayAndDisplay(mark);
 }
-loadArray();
 
 
 
-
-btnEl.addEventListener("submit", function(event) {
+formEl.addEventListener("submit", function(event) {
+    console.log("Enteered");
     event.preventDefault();
     nameChecker();
     urlChecker();
-    if (nameEl.value === "" | urlEl.value === "") {
+    if (nameEl.value === "" || urlEl.value === "") {
         alert("Fill the required fields");
         return;
     }
 
 
 
-    let id = bookMark.length;
-    id += 1;
+    bookMarkCount=bookMarkCount+1;
     let name = nameEl.value;
     let url = urlEl.value;
-    let mark = {
-        NAME: name,
-        URL: url,
-        ID: id
+    let newBookMark={
+        NAME:name,
+        URL:url,
+        ID:bookMarkCount
     };
-    bookMark.push(mark);
+    bookMark.push(newBookMark);
 
-    addToArrayAndDisplay(mark);
+    addToArrayAndDisplay(newBookMark);
 
     nameEl.value = "";
     urlEl.value = "";
 
-    localStorage.setItem("bookMarkManager", bookMark);
+    localStorage.setItem("bookMarkManager", JSON.stringify(bookMark));
 })

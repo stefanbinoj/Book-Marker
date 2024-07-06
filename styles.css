@@ -70,3 +70,7 @@ button {
 #bookmarksList {
     list-style-type: none;
 }
+.delete-icon-container {
+    text-align: right;
+    width: 18%;
+  }
