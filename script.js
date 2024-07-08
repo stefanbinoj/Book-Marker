@@ -79,7 +79,7 @@ function addToArrayAndDisplay(element) {
     smallContainerEl.appendChild(deleteIconContainer);
 
     let deleteIcon = document.createElement("i");
-    deleteIcon.classList.add("far", "fa-trash-alt", "delete-icon");
+    deleteIcon.classList.add("far", "fa-trash-alt", "delete-icon","icon");
 
     deleteIcon.onclick = function () {
     onDeleteTodo(labelId);
