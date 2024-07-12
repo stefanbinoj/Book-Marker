@@ -11,11 +11,4 @@
 - **Categorize Bookmarks**: Organize bookmarks into categories for better management.
 - **Search Functionality**: Easily search through bookmarks to find specific links.
 
-## Installation
 
-To run the Bookmark Manager locally:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/<username>/bookmark-manager.git
-   cd bookmark-manager
