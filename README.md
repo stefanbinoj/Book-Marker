@@ -8,7 +8,7 @@
 - **Add Bookmarks**: Quickly add new bookmarks with titles, URLs, and descriptions.
 - **Edit Bookmarks**: Modify existing bookmarks to keep information up-to-date.
 - **Delete Bookmarks**: Remove bookmarks that are no longer needed.
-- **Categorize Bookmarks**: Organize bookmarks into categories for better management.
+- **Categorize Bookmarks**: Organize bookmarks into categories for better  management.
 - **Search Functionality**: Easily search through bookmarks to find specific links.
 
 
